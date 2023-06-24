@@ -9,10 +9,15 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 @Configuration
 public class CurrencyRouter {
+
     @Bean
     public RouterFunction<ServerResponse> routerCurrency(CurrencyHandler currencyHandler) {
         return RouterFunctions.route()
+                .GET("pichincha/currency/all", currencyHandler::all)
                 .POST("pichincha/currency/save", currencyHandler::create)
+                .PUT("pichincha/currency/update", currencyHandler::update)
+                .POST("pichincha/currency-exchange", currencyHandler::exchange)
+                .GET("pichincha/currency-exchange/history", currencyHandler::showHistory)
                 .build();
     }
 

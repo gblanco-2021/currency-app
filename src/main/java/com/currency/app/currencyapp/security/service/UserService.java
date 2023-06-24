@@ -29,18 +29,8 @@ public class UserService {
 
     public Mono<TokenDto> login(LoginDto loginDto) {
 
-        Mono<User> block = userRepository.findByUsername(loginDto.getUsername())
-                .doOnNext(user -> System.out.println("USERNAME: " + user))
-                .doOnSuccess(user -> System.out.println("DOONSUCCESS: " + user))
-                .log();
-
-        log.debug("usuario: {}", block);
-
         return userRepository.findByUsername(loginDto.getUsername())
-                .filter(user -> {
-                    String val = "";
-                    return passwordEncoder.matches(loginDto.getPassword(), user.getPassword());
-                })
+                .filter(user -> passwordEncoder.matches(loginDto.getPassword(), user.getPassword()))
                 .map(user -> new TokenDto(jwtProvider.generateToken(user, new HashMap<>() {{
                     put("id", user.getId());
                 }})))

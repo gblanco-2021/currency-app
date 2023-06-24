@@ -12,19 +12,6 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/pichincha")
 public class CurrencyController {
 
-    @Autowired
-    private CurrencyService currencyService;
 
-    @GetMapping("/currencies")
-    @ResponseStatus(HttpStatus.OK)
-    public Flux<CurrencyExchange> getAllTutorials() {
-        return currencyService.findAll();
-    }
-
-    @PostMapping("/save")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Mono<CurrencyExchange> save(@RequestBody CurrencyExchange currencyExchange){
-        return currencyService.store(currencyExchange);
-    }
 
 }

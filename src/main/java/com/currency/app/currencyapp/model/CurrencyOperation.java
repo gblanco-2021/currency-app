@@ -1,5 +1,6 @@
 package com.currency.app.currencyapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
@@ -14,9 +15,12 @@ public class CurrencyOperation {
     @Id
     private String id;
     @Column("user_id")
+    @JsonIgnore
     private Long userId;
+    @Column("username")
+    private String username;
     @Column("currency_from")
-    private Double currencyFrom;
+    private String currencyFrom;
     @Column("currency_to")
     private String currencyTo;
     @Column("conversion")
