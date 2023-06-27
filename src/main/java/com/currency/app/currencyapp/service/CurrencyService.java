@@ -9,9 +9,7 @@ import com.currency.app.currencyapp.repository.CurrencyOperationRepository;
 import com.currency.app.currencyapp.repository.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -23,8 +21,6 @@ public class CurrencyService {
     @Autowired
     private CurrencyOperationRepository currencyOperationRepository;
 
-    @Autowired
-    private DatabaseClient databaseClient;
 
     public Flux<CurrencyExchange> findAll() {
         return currencyRepository.findAll();
